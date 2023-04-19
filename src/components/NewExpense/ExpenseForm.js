@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
+
 //https://nachwon.github.io/How_to_use_emmet/
 //Emmet
-const ExpenseFrom = () => {
-  const subminHandler = (event) => {
+const ExpenseFrom = (props) => {
+
+  const submitHandler = (event) => {
+
     event.preventDefault();
+
     const expenseData = {
       title: changedTitle,
       amount: changeAmount,
       date: new Date(changedDate),
     };
-    console.log(expenseData);
+
+    props.onSaveExpenseData(expenseData);
+    setChangedTitle('');
+    setChangeAmount('');
+    setChangedDate('');
   };
+
+
   const [changedTitle, setChangedTitle] = useState(""); //변경되 제목을 저장하기 위해서 사용함
   const [changedDate, setChangedDate] = useState(""); //숫자도 문자열로 들어오기 때문에 문자열로 초기화함.
   const [changeAmount, setChangeAmount] = useState("");
@@ -38,7 +48,7 @@ const ExpenseFrom = () => {
   };
 
   return (
-    <form onSubmit={subminHandler}>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__controls">
           <label>Title</label>

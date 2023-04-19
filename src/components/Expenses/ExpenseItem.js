@@ -1,7 +1,8 @@
 import "./ExpenseItem.css";
 import ExpenseDate from "./ExpenseDate"
 import Card from "../UI/Card";
-import React, {useState} from "react";
+import React,{useState} from 'react'
+
 function ExpenseItem(props) {
   //react 에서는 하나의 component 만 반환행햐한다 따라서 하나의 태그로 감싸야함.
 

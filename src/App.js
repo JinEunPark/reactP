@@ -1,17 +1,23 @@
-import Expenses from "./components/Expenses/Expenses";
-import NewExpense from "./components/Expenses/NewExpense/NewExpense";
+import Expenses from './components/Expenses/Expenses';
+import NewExpense from "./components/NewExpense/NewExpense";
 
 function App(props) {
-  const expense = [
-    { title: "newnew", amont: 123123, date: new Date(1234, 12, 12) },
-    { title: "hi", amont: 123123, date: new Date(1234, 12, 12) },
-    { title: "my", amont: 123123, date: new Date(1234, 12, 12) },
-    { title: "LOVW🤔", amont: 123123, date: new Date(1234, 12, 12) },
+  const expensesArray = [
+    { title: "newnew", amount: 123123, date: new Date(1234, 12, 12) },
+    { title: "hi", amount: 123123, date: new Date(1234, 12, 12) },
+    { title: "my", amount: 123123, date: new Date(1234, 12, 12) },
+    { title: "LOVW🤔", amount: 123123, date: new Date(1234, 12, 12) },
   ];
+
+  const addExpenseHandler = expense => {
+    console.log('In App.js')
+    console.log(expense);
+  }
+
   return (
     <div>
-      <NewExpense></NewExpense>
-      <Expenses item = {expense}/>
+      <NewExpense onAddExpense = {addExpenseHandler}/>
+      <Expenses item = {expensesArray}/>
     </div>
   );
 }

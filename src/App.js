@@ -26,7 +26,7 @@ const DUMMY_EXPENSES = [
 ];
 
 const App = () => {
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);//더미 데이터를 초기 값으로 전달함.
 
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {

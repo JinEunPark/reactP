@@ -1,27 +1,34 @@
+import React, { useState } from 'react';
+import Card from '../UI/Card';
+import ExpenseFilter from "./ExpenseFilter";
+import ExpensesList from './ExpensesList';
+import './Expenses.css';
+import ExpensesChart from './ExpensesChart';
 
-import ExpenseItem from './ExpenseItem';
-import './Expenses.css'
-import ExpenseFilter from './ExpenseFilter'
-import react, {useState} from 'react'
-import Card from "../UI/Card";
-function Expenses(props) {
-  const [selectedYear, setSelectedYear] = useState('2020')
+const Expenses = (props) => {
+  const [filteredYear, setFilteredYear] = useState('2020');
+
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  };
+
+  const filteredExpenses = props.items.filter((expense) => {//javascript의 filter 함수를 이용해서 일차적으로 거름
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
   
-  const filterChangeHandler = selectYear => {
-    setSelectedYear(selectYear);
-    
-  }
-
   return (
-    <Card className='expenses'>
-      <ExpenseFilter selected = {selectedYear} onfilterChanged = {filterChangeHandler}></ExpenseFilter>
-      {
-        props.item.map((expense) => (<ExpenseItem title = {expense.title} amoumt = {expense.amoumt} date = {expense.date}></ExpenseItem>))
-      }
-    </Card>
+      <div>
+        <Card className='expenses'>
+          <ExpenseFilter
+              selected={filteredYear}
+              onChangeFilter={filterChangeHandler}
+          />
+          <ExpensesChart expenses={filteredExpenses}/>
+          <ExpensesList items ={filteredExpenses}/>
+        </Card>
+      </div>
   );
+};
 
-  
-}
+export default Expenses;
 
-export default Expenses
